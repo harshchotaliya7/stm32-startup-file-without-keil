@@ -1,0 +1,246 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00080000         xr
+SRAM1            0x20000000         0x00010000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD GPIO_Config.o
+LOAD main.o
+LOAD stm32_startup.o
+
+.text           0x08000000      0x27c
+ *(.isr_vector)
+ .isr_vector    0x08000000      0x1cc stm32_startup.o
+                0x08000000                vectors
+ *(.text)
+ .text          0x080001cc        0x0 GPIO_Config.o
+ .text          0x080001cc        0x6 main.o
+                0x080001cc                main
+ *fill*         0x080001d2        0x2 
+ .text          0x080001d4       0xa0 stm32_startup.o
+                0x080001d4                _libc_init_array
+                0x080001e2                Reset_handler
+                0x0800026c                FLASH_Handler
+                0x0800026c                DMA2_CH8_Handler
+                0x0800026c                RNG_Handler
+                0x0800026c                HRTIM_TIMF_IRQn_Handler
+                0x0800026c                HardFault_Handler
+                0x0800026c                HRTIM_TIM_FLT_IRQn_Handler
+                0x0800026c                USART3_Handler
+                0x0800026c                DMA2_CH4_Handler
+                0x0800026c                COMP4_5_6_Handler
+                0x0800026c                PendSV_Handler
+                0x0800026c                USB_HP_Handler
+                0x0800026c                CRS_Handler
+                0x0800026c                SysTick_Handler
+                0x0800026c                EXTI15_10_Handler
+                0x0800026c                DMA2_CH2_Handler
+                0x0800026c                NMI_handler
+                0x0800026c                I2C1_EV_Handler
+                0x0800026c                ADC1_2_Handler
+                0x0800026c                I2C3_ER_Handler
+                0x0800026c                WWDG_Handler
+                0x0800026c                EXTI4_Handler
+                0x0800026c                I2C3_EV_Handler
+                0x0800026c                DMA1_CH8_Handler
+                0x0800026c                FDCAN3_intr0_Handler
+                0x0800026c                FDCAN3_intr1_Handler
+                0x0800026c                DMA1_CH5_Handler
+                0x0800026c                I2C1_ER_Handler
+                0x0800026c                I2C4_EV_Handler
+                0x0800026c                I2C4_ER_Handler
+                0x0800026c                FDCAN2_intr0_Handler
+                0x0800026c                RTC_Handler
+                0x0800026c                UsageFault_Handler
+                0x0800026c                TIM1_CC_Handler
+                0x0800026c                I2C2_ER_Handler
+                0x0800026c                ADC5_Handler
+                0x0800026c                TIM8_CC_Handler
+                0x0800026c                DMAMUX_OVR_Handler
+                0x0800026c                HRTIM_TIMA_IRQn_Handler
+                0x0800026c                QUADSPI_Handler
+                0x0800026c                TIM8_BRK_Handler
+                0x0800026c                DMA2_CH6_Handler
+                0x0800026c                DMA2_CH7_Handler
+                0x0800026c                TIM1_BRK_Handler
+                0x0800026c                DMA1_CH6_Handler
+                0x0800026c                FSMC_Handler
+                0x0800026c                DMA1_CH4_Handler
+                0x0800026c                EXTI1_Handler
+                0x0800026c                SAI_Hander
+                0x0800026c                TIM8_TRG_COM_Handler
+                0x0800026c                EXTI3_Handler
+                0x0800026c                fdcan1_intr0_it_Handler
+                0x0800026c                EXTI2_Handler
+                0x0800026c                TIM20_UP_Handler
+                0x0800026c                TIM20_TRG_COM_Handler
+                0x0800026c                UART4_Handler
+                0x0800026c                RTC_WKUP_Handler
+                0x0800026c                EXTI9_5_Handler
+                0x0800026c                COMP7_Handler
+                0x0800026c                TIM2_Handler
+                0x0800026c                DMA1_CH1_Handler
+                0x0800026c                USART1_Handler
+                0x0800026c                TIM3_Handler
+                0x0800026c                DMA1_CH2_Handler
+                0x0800026c                HRTIM_TIMB_IRQn_Handler
+                0x0800026c                TIM4_Handler
+                0x0800026c                SPI2_Handler
+                0x0800026c                COMP1_2_3_Handler
+                0x0800026c                MemManage_Handler
+                0x0800026c                EXTI0_Handler
+                0x0800026c                USBWakeUP_Handler
+                0x0800026c                DMA2_CH1_Handler
+                0x0800026c                TIM1_UP_Handler
+                0x0800026c                TIM8_UP_Handler
+                0x0800026c                LPTIM1_Handler
+                0x0800026c                USART2_Handler
+                0x0800026c                SPI1_Handler
+                0x0800026c                TIM20_CC_Handler
+                0x0800026c                TIM20_BRK_Handler
+                0x0800026c                DMA1_CH3_Handler
+                0x0800026c                ADC3_Handler
+                0x0800026c                I2C2_EV_Handler
+                0x0800026c                FDCAN2_intr1_Handler
+                0x0800026c                SPI3_Handler
+                0x0800026c                HRTIM_Master_IRQn_Handler
+                0x0800026c                TIM7_DACUNDER_Handler
+                0x0800026c                RCC_Handler
+                0x0800026c                HRTIM_TIME_IRQn_Handler
+                0x0800026c                UART5_Handler
+                0x0800026c                HRTIM_TIMC_IRQn_Handler
+                0x0800026c                UCPD1_global_interrupt_Handler
+                0x0800026c                Cordic_Handler
+                0x0800026c                TIM5_Handler
+                0x0800026c                DMA2_CH5_Handler
+                0x0800026c                HRTIM_TIMD_IRQn_Handler
+                0x0800026c                TIM6_DACUNDER_Handler
+                0x0800026c                USB_LP_Handler
+                0x0800026c                FPU_Handler
+                0x0800026c                ADC4_Handler
+                0x0800026c                BusFault_Handler
+                0x0800026c                PVD_PVM_Handler
+                0x0800026c                FMAC_Handler
+                0x0800026c                LPUART_Handler
+                0x0800026c                DMA1_CH7_Handler
+                0x0800026c                DMA2_CH3_Handler
+                0x0800026c                TIM1_TRG_COM_Handler
+                0x0800026c                AES_Handler
+                0x0800026c                SPI4_Handler
+                0x0800026c                fdcan1_intr1_it_Handler
+                0x0800026c                RTC_ALARM_Handler
+                0x0800026c                Default_handler
+ *(.text.*)
+ *(.rodata)
+ .rodata        0x08000274        0x5 main.o
+                0x08000274                harsh
+                0x08000278                harsh1
+ *(.rodata.*)
+                0x0800027c                . = ALIGN (0x4)
+ *fill*         0x08000279        0x3 
+                0x0800027c                _etext = .
+                0x0800027c                _la_data = LOADADDR (.data)
+
+.glue_7         0x0800027c        0x0
+ .glue_7        0x0800027c        0x0 linker stubs
+
+.glue_7t        0x0800027c        0x0
+ .glue_7t       0x0800027c        0x0 linker stubs
+
+.vfp11_veneer   0x0800027c        0x0
+ .vfp11_veneer  0x0800027c        0x0 linker stubs
+
+.v4_bx          0x0800027c        0x0
+ .v4_bx         0x0800027c        0x0 linker stubs
+
+.iplt           0x0800027c        0x0
+ .iplt          0x0800027c        0x0 stm32_startup.o
+
+.rel.dyn        0x0800027c        0x0
+ .rel.iplt      0x0800027c        0x0 stm32_startup.o
+
+.data           0x20000000        0x4 load address 0x0800027c
+                0x20000000                _sdata = .
+ *(.data)
+ .data          0x20000000        0x0 GPIO_Config.o
+ .data          0x20000000        0x1 main.o
+                0x20000000                harsh2
+ .data          0x20000001        0x0 stm32_startup.o
+                0x20000004                . = ALIGN (0x4)
+ *fill*         0x20000001        0x3 
+                0x20000004                _edata = .
+
+.igot.plt       0x20000004        0x0 load address 0x08000280
+ .igot.plt      0x20000004        0x0 stm32_startup.o
+
+.bss            0x20000004        0x4 load address 0x08000280
+                0x20000004                _sbss = .
+                0x20000004                __bss_start__ = _sbss
+ *(.bss)
+ .bss           0x20000004        0x0 GPIO_Config.o
+ .bss           0x20000004        0x4 main.o
+                0x20000004                harsh3
+ .bss           0x20000008        0x0 stm32_startup.o
+ *(.bss.*)
+ *(COMMON)
+                0x20000008                . = ALIGN (0x4)
+                0x20000008                _ebss = .
+                0x20000008                __bss_end__ = _ebss
+                0x20000008                . = ALIGN (0x4)
+                0x20000008                end = .
+OUTPUT(final.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000      0x30b
+ .debug_info    0x00000000       0x64 GPIO_Config.o
+ .debug_info    0x00000064      0x104 main.o
+ .debug_info    0x00000168      0x1a3 stm32_startup.o
+
+.debug_abbrev   0x00000000      0x1a2
+ .debug_abbrev  0x00000000       0x26 GPIO_Config.o
+ .debug_abbrev  0x00000026       0x6d main.o
+ .debug_abbrev  0x00000093      0x10f stm32_startup.o
+
+.debug_aranges  0x00000000       0x58
+ .debug_aranges
+                0x00000000       0x18 GPIO_Config.o
+ .debug_aranges
+                0x00000018       0x20 main.o
+ .debug_aranges
+                0x00000038       0x20 stm32_startup.o
+
+.debug_line     0x00000000      0x2bd
+ .debug_line    0x00000000       0x1d GPIO_Config.o
+ .debug_line    0x0000001d      0x110 main.o
+ .debug_line    0x0000012d      0x190 stm32_startup.o
+
+.debug_str      0x00000000      0x1b5
+ .debug_str     0x00000000      0x100 GPIO_Config.o
+                                0x134 (size before relaxing)
+ .debug_str     0x00000100       0x3c main.o
+                                0x173 (size before relaxing)
+ .debug_str     0x0000013c       0x79 stm32_startup.o
+                                0x1c5 (size before relaxing)
+
+.comment        0x00000000       0x49
+ .comment       0x00000000       0x49 GPIO_Config.o
+                                 0x4a (size before relaxing)
+ .comment       0x00000049       0x4a main.o
+ .comment       0x00000049       0x4a stm32_startup.o
+
+.ARM.attributes
+                0x00000000       0x2e
+ .ARM.attributes
+                0x00000000       0x2e GPIO_Config.o
+ .ARM.attributes
+                0x0000002e       0x2e main.o
+ .ARM.attributes
+                0x0000005c       0x2e stm32_startup.o
+
+.debug_frame    0x00000000       0x94
+ .debug_frame   0x00000000       0x28 main.o
+ .debug_frame   0x00000028       0x6c stm32_startup.o
